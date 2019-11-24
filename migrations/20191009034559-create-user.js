@@ -35,6 +35,11 @@ module.exports = {
         allowNull: false,
         defaultValue: constants.USER_USER_TYPE_GUEST
       },
+      status: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: constants.USER_USER_STATUS.REGISTERED
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false

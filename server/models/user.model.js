@@ -1,9 +1,4 @@
-const USER_GUEST = -1
-const USER_NORMAL = 0
-const USER_TYPE_CHOICES = [
-  USER_GUEST,
-  USER_NORMAL
-]
+import constants from '../../config/constants'
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -34,13 +29,12 @@ module.exports = (sequelize, DataTypes) => {
     user_type: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: USER_GUEST,
-      validate: {
-        isInt: {
-          args: [USER_TYPE_CHOICES],
-          msg: 'Must be guest or normal'
-        }
-      }
+      defaultValue: constants.USER_USER_TYPE_GUEST
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: constants.USER_USER_STATUS.REGISTERED
     },
     display_name: {
       type: DataTypes.STRING,
