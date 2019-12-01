@@ -1,6 +1,13 @@
 module.exports = Object.freeze({
   AUTH_TYPE_EMAIL: 'email',
   AUTH_TYPE_FACEBOOK: 'facebook',
+  MODEL_NAMES: {
+    USER: 'users'
+  },
+  ROLES: {
+    ADMIN: 1,
+    USER: 0
+  },
   USER_USER_STATUS: {
     REGISTERED: 0,
     ACTIVED: 1

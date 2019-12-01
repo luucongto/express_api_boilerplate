@@ -1,6 +1,6 @@
 import db from '../../config/sequelize'
 
-const User = db.User
+const User = db.users
 async function getUserByUsername (username) {
   var user = await User.findOne({
     where: {

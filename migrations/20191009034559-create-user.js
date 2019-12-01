@@ -35,6 +35,11 @@ module.exports = {
         allowNull: false,
         defaultValue: constants.USER_USER_TYPE_GUEST
       },
+      role: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: constants.ROLES.USER
+      },
       status: {
         type: Sequelize.INTEGER,
         allowNull: false,

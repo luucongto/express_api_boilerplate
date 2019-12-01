@@ -13,14 +13,20 @@ import winstonInstance from './winston'
 import routes from '../server/routes/index.route'
 import config from './config'
 import APIError from '../server/helpers/APIError'
+import logconfig from './logconfig.js'
 const passport = require('./passport')
 const app = express()
 // eslint-disable-next-line no-unused-vars
-if (config.env === 'development') {
-  app.use(logger('dev'))
-}
+// var logger = require('morgan')
+var log4js = require('log4js')
+log4js.configure(logconfig)
+
+// if (config.env === 'development') {
+//   app.use(logger('dev'))
+// }
 
 // parse body params and attache them to req.body
+app.use(log4js.connectLogger(log4js.getLogger('http'), { level: 'auto' }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(passport.initialize())
@@ -36,14 +42,14 @@ app.use(cors())
 
 // enable detailed API logging in dev env
 // if (config.env === 'development') {
-expressWinston.requestWhitelist.push('body')
-expressWinston.responseWhitelist.push('body')
-app.use(expressWinston.logger({
-  winstonInstance,
-  meta: true, // optional: log meta data about request (defaults to true)
-  msg: 'HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
-  colorStatus: true // Color the status code (default green, 3XX cyan, 4XX yellow, 5XX red).
-}))
+// expressWinston.requestWhitelist.push('body')
+// expressWinston.responseWhitelist.push('body')
+// app.use(expressWinston.logger({
+//   winstonInstance,
+//   meta: true, // optional: log meta data about request (defaults to true)
+//   msg: 'HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
+//   colorStatus: true // Color the status code (default green, 3XX cyan, 4XX yellow, 5XX red).
+// }))
 // }
 
 // Get API Version from .env (or else assume 1.0)

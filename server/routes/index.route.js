@@ -3,7 +3,7 @@ import validate from 'express-validation'
 
 import paramValidation from '../../config/param-validation'
 import passport from '../../config/passport'
-
+import adminRoute from './admin.route'
 import authCtrl from '../controllers/auth.controller'
 import userBookController from '../controllers/user_books.controller'
 import userLessonController from '../controllers/user_lessons.controller'
@@ -14,7 +14,7 @@ const router = express.Router() // eslint-disable-line new-cap
 router.get('/health-check', (req, res) =>
   res.send('OK')
 )
-
+router.use('/cms', adminRoute)
 router.route('/login')
   .post(
     validate(paramValidation.login),

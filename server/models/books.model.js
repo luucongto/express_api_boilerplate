@@ -1,4 +1,3 @@
-import constants from '../../config/constants'
 const tableName = 'books'
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.define(tableName, {

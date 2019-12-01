@@ -1,7 +1,7 @@
 import constants from '../../config/constants'
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define(constants.MODEL_NAMES.USER, {
     id: {
       // eslint-disable-next-line no-undef
       type: DataTypes.BIGINT,
@@ -39,6 +39,11 @@ module.exports = (sequelize, DataTypes) => {
     display_name: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    role: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: constants.ROLES.USER
     },
     picture: {
       type: DataTypes.STRING,

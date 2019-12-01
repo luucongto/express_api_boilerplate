@@ -6,7 +6,7 @@ var JwtStrategy = require('passport-jwt').Strategy
 var ExtractJwt = require('passport-jwt').ExtractJwt
 var settings = require('./config')
 
-const User = db.User
+const User = db.users
 
 passport.serializeUser(function (user, done) {
   done(null, user.id)

@@ -3,11 +3,11 @@ import request from 'request-promise'
 import config from '../../config/config'
 import constants from '../../config/constants'
 import db from '../../config/sequelize'
-import UserService from '../services/user.service'
 import APIError from '../helpers/APIError'
 const bcrypt = require('bcrypt')
 const saltRounds = 10
-const User = db.User
+console.log('db', Object.keys(db))
+const User = db.users
 
 /**
  * Returns jwt token if valid username and password is provided
@@ -70,7 +70,7 @@ async function login (req, res, next) {
       }
       const response = await request(options)
       username = `${authType}_${response.id}`
-      const [userObj, created] = await User.findOrCreate({
+      const [userObj] = await User.findOrCreate({
         where: {
           username
         },
