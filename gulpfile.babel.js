@@ -7,9 +7,10 @@ import runSequence from 'run-sequence'
 const plugins = gulpLoadPlugins()
 
 const paths = {
-  js: ['./**/*.js', '!dist/**', '!node_modules/**', '!coverage/**'],
-  nonJs: ['./package.json', './.gitignore', './.env'],
-  tests: './server/tests/*.js'
+  js: ['./**/*.js', '!dist/**', '!node_modules/**', '!coverage/**', '!views/**'],
+  nonJs: ['./package.json', './.gitignore', './.env', './views/**', './.sequelizerc'],
+  tests: './server/tests/*.js',
+  views: ['./views/**/*']
 }
 
 // Clean up dist and coverage directory
@@ -19,9 +20,12 @@ gulp.task('clean', () =>
 
 // Copy non-js files to dist
 gulp.task('copy', () =>
-  gulp.src(paths.nonJs)
+  gulp.src(paths.nonJs, { base: '.' })
     .pipe(plugins.newer('dist'))
     .pipe(gulp.dest('dist'))
+    .pipe(gulp.src(paths.views))
+    .pipe(plugins.newer('dist/views'))
+    .pipe(gulp.dest('dist/views'))
 )
 
 // Compile ES6 to ES5 and copy to dist

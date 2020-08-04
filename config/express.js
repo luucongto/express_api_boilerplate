@@ -16,6 +16,7 @@ import APIError from '../server/helpers/APIError'
 import logconfig from './logconfig.js'
 const passport = require('./passport')
 const app = express()
+const path = require('path')
 // eslint-disable-next-line no-unused-vars
 // var logger = require('morgan')
 var log4js = require('log4js')
@@ -33,7 +34,7 @@ app.use(passport.initialize())
 app.use(cookieParser())
 app.use(compress())
 app.use(methodOverride())
-
+app.use('/', express.static(path.join(__dirname, 'views')))
 // secure apps by setting various HTTP headers
 app.use(helmet())
 
