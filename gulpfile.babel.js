@@ -19,13 +19,18 @@ gulp.task('clean', () =>
 )
 
 // Copy non-js files to dist
-gulp.task('copy', () =>
+// Copy non-js files to dist
+gulp.task('copy-views', () =>
+    gulp.src(paths.views)
+    .pipe(plugins.newer('dist/views'))
+    .pipe(gulp.dest('dist/views'))
+)
+gulp.task('copy-source', () =>
   gulp.src(paths.nonJs, { base: '.' })
     .pipe(plugins.newer('dist'))
     .pipe(gulp.dest('dist'))
-    .pipe(gulp.src(paths.views))
-    .pipe(plugins.newer('dist/views'))
-    .pipe(gulp.dest('dist/views'))
+)
+gulp.task('copy', ['copy-source', 'copy-views'], () => {}
 )
 
 // Compile ES6 to ES5 and copy to dist
