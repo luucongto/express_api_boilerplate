@@ -27,7 +27,7 @@ async function login (req, res, next) {
 
     let user = null
     let username = null
-    if (authType === constants.AUTH_TYPE_EMAIL) {
+    if (authType === constants.AUTH_TYPE_EMAIL || authType === constants.AUTH_TYPE_LOCAL) {
       var hashedPassword = await bcrypt.hash(password, saltRounds)
       const [userObj, created] = await User.findOrCreate({
         where: {
@@ -102,6 +102,7 @@ async function login (req, res, next) {
       throw APIError('unknown error when login')
     }
   } catch (e) {
+    console.error('login error', e)
     next(e)
   }
 }

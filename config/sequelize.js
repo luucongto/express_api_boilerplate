@@ -56,6 +56,7 @@ Object.keys(db).forEach((name) => {
   }
 })
 
+
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 

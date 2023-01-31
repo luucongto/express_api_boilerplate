@@ -10,7 +10,12 @@ const debug = require('debug')('newsai-api:index')
 
 // make bluebird default Promise
 Promise = require('bluebird') // eslint-disable-line no-global-assign
-
+try {
+  db.sequelize.sync({force: true});
+  console.log("All models were synchronized successfully.");
+} catch(err) {
+  console.error("Sequelize error: " + err)
+}
 // module.parent check is required to support mocha watch
 if (!module.parent) {
   // listen on port config.port

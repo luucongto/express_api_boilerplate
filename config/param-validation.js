@@ -23,7 +23,7 @@ export default {
   // POST /api/auth/login
   login: {
     body: {
-      type: Joi.string().required().valid(constants.AUTH_TYPE_EMAIL, constants.AUTH_TYPE_FACEBOOK),
+      type: Joi.string().required().valid(constants.AUTH_TYPE_EMAIL, constants.AUTH_TYPE_FACEBOOK, constants.AUTH_TYPE_LOCAL),
       token: Joi.string(),
       email: Joi.string(),
       displayName: Joi.string(),

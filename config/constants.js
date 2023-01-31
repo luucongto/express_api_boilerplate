@@ -1,6 +1,7 @@
 module.exports = Object.freeze({
   AUTH_TYPE_EMAIL: 'email',
   AUTH_TYPE_FACEBOOK: 'facebook',
+  AUTH_TYPE_LOCAL: "local",
   MODEL_NAMES: {
     USER: 'users'
   },
